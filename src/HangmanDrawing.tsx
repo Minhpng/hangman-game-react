@@ -86,7 +86,11 @@ type HangmanDrawingProps = {
 	numberOfGuesses: number
 }
 export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
-	let bodyPartLeft = 6 - numberOfGuesses || 0
+	let bodyPartLeft = 0
+
+	if (numberOfGuesses <= 6) {
+		bodyPartLeft = 6 - numberOfGuesses
+	}
 	return (
 		<div style={{ position: "relative" }}>
 			{BODY_PART.slice(0, bodyPartLeft)}

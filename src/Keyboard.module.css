@@ -16,10 +16,10 @@
 	background-color: hsl(200 100% 75%);
 }
 
-.btn:active {
+.btn.active {
 	background-color: hsl(200, 100%, 30%);
 }
 
-.btn:inactive {
+.btn.inactive {
 	opacity: 0.3;
 }
