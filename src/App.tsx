@@ -47,6 +47,32 @@ function App() {
 		}
 	}, [guessedLetters])
 
+	useEffect(() => {
+		const handler = (e: KeyboardEvent) => {
+			const key = e.key
+
+			if (key !== "Enter") return
+			if (isLoser || isWinner) {
+				e.preventDefault()
+
+				setWordToGuess(setWord())
+				setGuessedLetters([])
+			}
+		}
+		document.addEventListener("keypress", handler)
+
+		return () => {
+			document.removeEventListener("keypress", handler)
+		}
+	}, [isLoser, isWinner])
+
+	const isReset = isLoser || isWinner
+
+	const resetBtn = () => {
+		setWordToGuess(setWord())
+		setGuessedLetters([])
+	}
+
 	return (
 		<div
 			style={{
@@ -69,6 +95,7 @@ function App() {
 				incorrectLetters={incorrectLetters}
 				addGuessedLetter={addGuessedLetter}
 			/>
+			{isReset && <button onClick={resetBtn}>Reset</button>}
 		</div>
 	)
 }
