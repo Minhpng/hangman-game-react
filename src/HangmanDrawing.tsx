@@ -82,18 +82,21 @@ const LEFT_LEG = (
 )
 
 const BODY_PART = [HEAD, BODY, LEFT_ARM, RIGHT_ARM, RIGHT_LEG, LEFT_LEG]
-type HangmanDrawingProps = {
-	numberOfGuesses: number
-}
-export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
-	let bodyPartLeft = 0
 
-	if (numberOfGuesses <= 6) {
-		bodyPartLeft = 6 - numberOfGuesses
+type HangmanDrawingProps = {
+	numberOfGuess: number
+}
+
+export function HangmanDrawing({ numberOfGuess }: HangmanDrawingProps) {
+	let LEFT_BODY_PART = 0
+
+	if (numberOfGuess <= BODY_PART.length) {
+		LEFT_BODY_PART = BODY_PART.length - numberOfGuess
 	}
+
 	return (
 		<div style={{ position: "relative" }}>
-			{BODY_PART.slice(0, bodyPartLeft)}
+			{BODY_PART.slice(0, LEFT_BODY_PART)}
 			<div style={{ height: "50px", width: "10px", background: "black", position: "absolute", top: "0", right: "0" }} />
 			<div style={{ height: "10px", width: "200px", background: "black", marginLeft: "120px" }} />
 			<div style={{ height: "400px", width: "10px", background: "black", marginLeft: "120px" }} />
