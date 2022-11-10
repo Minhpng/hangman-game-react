@@ -68,10 +68,10 @@ function App() {
 
 	const isReset = isLoser || isWinner
 
-	const resetBtn = () => {
+	const resetBtn = useCallback(() => {
 		setWordToGuess(setWord())
 		setGuessedLetters([])
-	}
+	}, [])
 
 	return (
 		<div
